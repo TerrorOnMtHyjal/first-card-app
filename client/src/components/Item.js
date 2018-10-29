@@ -9,18 +9,36 @@ const styles = {
   padding: '1em',
 };
 
-const Item = ({ itemInformation }) => (
-  <div style={styles} >
-    <h4>{itemInformation.title}</h4>
-    <span>{itemInformation.listingInfo[0].listingType}</span>
-    <span style={{color: 'green'}}>
-      Price: ${itemInformation.sellingStatus[0].convertedCurrentPrice[0].__value__}
-    </span>
-  </div>
-);
+const Item = ({item}) => {
+  const { itemURL, title, postType, soldPrice } = item;
+
+  return (
+    <div style={styles} >
+      <h4>
+        <a 
+          href={itemURL}
+          target="_blank"
+        >
+          {title}
+        </a>
+      </h4>
+      <span>{postType}</span>
+      <span style={{color: 'green'}}>
+        Price: ${soldPrice}
+      </span>
+    </div>
+  );
+};
 
 export default Item;
 
 Item.propTypes = {
-
+  item: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    itemId: PropTypes.string.isRequired,
+    soldPrice: PropTypes.string.isRequired,
+    endTime: PropTypes.string.isRequired,
+    postType: PropTypes.string.isRequired,
+    itemURL: PropTypes.string.isRequired,
+  }).isRequired
 };

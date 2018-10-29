@@ -1,3 +1,5 @@
+import { itemDataDehydrator } from '../utils/utils';
+
 const initialState = {
   data: []
 };
@@ -5,10 +7,10 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
   switch (type) {
    case 'GET_DATA_SUCCESS':
-    // call hydration util for items
+    const dehydratedItems = itemDataDehydrator(payload.data);
     return {
       ...state,
-     data: payload.data
+     data: dehydratedItems
     }
     
    default:

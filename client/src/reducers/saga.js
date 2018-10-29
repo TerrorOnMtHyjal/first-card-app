@@ -20,7 +20,7 @@ function* fetchData(action) {
       .then(res => res.json())
       .then(data => data);
 
-      yield put(getDataSuccess(items["findCompletedItemsResponse"][0].searchResult[0].item));
+      yield put(getDataSuccess(items));
    } catch (e) {
       console.log(e.message);
    }
