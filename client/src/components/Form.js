@@ -15,18 +15,18 @@ export default class Form extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.dispatch(getData(this.state.fields.item))
+    this.props.dispatch(getData(this.state.fields.item));
   }
 
   handleChange = ({ target }) => {
-    console.log(target);
     this.setState({
       fields: {
         ...this.state.fields,
         [target.name]: target.value
       }
-    }, () => console.log(this.state.fields))
+    })
   }
+
   render() {
     return (
       <form onSubmit={this.handleSubmit}>

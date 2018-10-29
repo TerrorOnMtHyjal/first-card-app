@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon index.js localhost 8000"
+    "dev": "nodemon -L index.js localhost 8000"
   },
   "author": "",
   "license": "ISC"
