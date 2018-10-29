@@ -43,7 +43,6 @@ app.get('/ebay', (req, res) => {
         `&SERVICE-VERSION=${SERVICE_VERSION}`+
         `&RESPONSE-DATA-FORMAT=${RESPONSE_DATA_FORMAT}`+
         `&keywords=${KEYWORDS}`+
-        `&paginationInput.entriesPerPage=${PAGINATION}`+
         `&GLOBAL-ID=EBAY-US`,
         responseType:'json'
     })
