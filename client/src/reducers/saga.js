@@ -1,25 +1,24 @@
-import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { put, takeEvery } from 'redux-saga/effects';
 import { getDataSuccess } from '../actions/actionCreators';
 
-// worker Saga: will be fired on USER_FETCH_REQUESTED actions
+const defaultPostConfig  = {
+  method: 'post',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/json'
+  },
+};
+
 function* fetchData(action) {
    try {
       const items = yield fetch('/ebay', {
-        method: 'post',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json'
-        },
+        ...defaultPostConfig,
         body: JSON.stringify({
           query: action.payload.query
         })
       })
-      .then((res) => {
-        return res.json();
-      })
-      .then(data => {
-        return data
-      });
+      .then(res => res.json())
+      .then(data => data);
 
       yield put(getDataSuccess(items["findCompletedItemsResponse"][0].searchResult[0].item));
    } catch (e) {
@@ -27,10 +26,6 @@ function* fetchData(action) {
    }
 }
 
-/*
-  Starts fetchUser on each dispatched `USER_FETCH_REQUESTED` action.
-  Allows concurrent fetches of user.
-*/
 function* saga() {
   yield takeEvery("GET_DATA_REQUEST", fetchData);
 }

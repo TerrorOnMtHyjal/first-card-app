@@ -1,4 +1,4 @@
-import React, { Fragmanet} from 'react';
+import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import Item from './Item';
 
@@ -9,16 +9,12 @@ const calcAverage = (data) => {
 const Main = ({ data }) => (
   <div>
       <h1>HOLA AMIGO MAS</h1>
-      {
-        data.map((item, index) => {
-          return (
-            <>
-              <Item itemInformation={item} />
-              <hr />
-            </>
-          )
-        })
-      }
+      {data.map((item, index) => (
+        <>
+          <Item itemInformation={item} key={index} />
+          <hr />
+        </>
+      ))}
   </div>
 );
 

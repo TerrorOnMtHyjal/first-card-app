@@ -20,3 +20,7 @@ const Item = ({ itemInformation }) => (
 );
 
 export default Item;
+
+Item.propTypes = {
+
+};

@@ -1,18 +1,14 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { getData } from '../actions/actionCreators';
 
 
 export default class Form extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      fields: {
-        item: ''
-      }
-    };
-  }
-
+  state = {
+    fields: {
+      item: ''
+    }
+  };
+  
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.dispatch(getData(this.state.fields.item));
