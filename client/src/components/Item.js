@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const styles = {
+  alignItems: 'flex-start',
   display: 'flex',
   flexFlow: 'column',
   justifyContent: 'flex-start',
-  alignItems: 'flex-start',
   padding: '1em',
 };
 
@@ -34,11 +34,11 @@ export default Item;
 
 Item.propTypes = {
   item: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    itemId: PropTypes.string.isRequired,
-    soldPrice: PropTypes.string.isRequired,
     endTime: PropTypes.string.isRequired,
-    postType: PropTypes.string.isRequired,
+    itemId: PropTypes.string.isRequired,
     itemURL: PropTypes.string.isRequired,
+    postType: PropTypes.string.isRequired,
+    soldPrice: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
   }).isRequired
 };

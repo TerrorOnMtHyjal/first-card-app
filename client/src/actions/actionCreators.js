@@ -1,15 +1,15 @@
 export const getDataSuccess = (data) => ({
-  type: 'GET_DATA_SUCCESS',
   payload: {
     data
-  }
+  },
+  type: 'GET_DATA_SUCCESS'
 });
 
 export const getData = (query) => ({
-  type: 'GET_DATA_REQUEST',
   payload: {
     query
-  }
+  },
+  type: 'GET_DATA_REQUEST',
 });
 
 // fetch('/ebay')

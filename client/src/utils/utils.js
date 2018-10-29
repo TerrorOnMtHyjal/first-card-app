@@ -1,5 +1,5 @@
 export const itemDataDehydrator = (data) => {
-  const items = data["findCompletedItemsResponse"][0].searchResult[0].item;
+  const items = data.findCompletedItemsResponse[0].searchResult[0].item;
   console.log(items);
   const dehydratedItems = [];
 
