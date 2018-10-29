@@ -5,7 +5,7 @@ WORKDIR /srv/app/test-client
 COPY package.json /srv/app/test-client
 COPY package-lock.json /srv/app/test-client
 
-RUN npm install
+RUN npm install --quiet
 
 COPY . /srv/app/test-client
 
