@@ -1,5 +1,17 @@
+require('dotenv').config();
 const express = require('express');
+let httpRequest = require("https");
+const axios = require('axios');
+const eBay = require('ebay-node-api');
 const app = express();
+
+// app.use(express.static(path.resolve(__dirname, '..', 'build')));
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT ,DELETE");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
 app.get('/', (req, res) => {
     res.send('Server operational on port 8000');
@@ -12,20 +24,36 @@ app.get('/test', (req, res) => {
 app.get('/ebay', (req, res) => {
 
     const OPERATION_NAME = "findItemsByKeywords";
-    const SERVICE_VERSION = "1.0.0";
-    const SECURITY_APPNAME = "";
+    const SERVICE_VERSION = "1.13.0";
+    const SECURITY_APPNAME = process.env.EBAY_APP_ID;
     const GLOBAL_ID = "EBAY-US";
     const RESPONSE_DATA_FORMAT = "JSON";
-    const CALLBACK = "_cb_findItemsByKeywords";
-    const KEYWORDS = "barbie doll";
+    const KEYWORDS = "fontaine+playing+cards";
     const PAGINATION = "3";
 
-    
-
-
-    // https://svcs.ebay.com/services/search/FindingService/v1?OPERATION-NAME=findItemsByKeywords&SERVICE-VERSION=1.0.0&RESPONSE-DATA-FORMAT=JSON&callback=_cb_findItemsByKeywords&REST-PAYLOAD&keywords=iPhone&paginationInput.entriesPerPage=6&GLOBAL-ID=EBAY-US&siteid=0
+    axios({
+        method: 'get',
+        headers: {
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: "",
+        url: `https://svcs.ebay.com/services/search/FindingService/v1`+
+        `?SECURITY-APPNAME=${SECURITY_APPNAME}`+
+        `&OPERATION-NAME=${OPERATION_NAME}`+
+        `&SERVICE-VERSION=${SERVICE_VERSION}`+
+        `&RESPONSE-DATA-FORMAT=${RESPONSE_DATA_FORMAT}`+
+        `&keywords=${KEYWORDS}`+
+        `&paginationInput.entriesPerPage=${PAGINATION}`+
+        `&GLOBAL-ID=EBAY-US`,
+        responseType:'json'
+    })
+    .then(result => {
+        console.log(result.data);
+        res.send(result.data);
+    })
+    .catch(err => {
+        console.log(err);
+    });
 });
 
 app.listen(8000, () => console.log('Listening to port 8000!'));
-
-//yerp
