@@ -1,16 +1,24 @@
-import React from 'react';
+import React, { Fragmanet} from 'react';
 import PropTypes from 'prop-types';
+import Item from './Item';
+
+const calcAverage = (data) => {
+  
+};
 
 const Main = ({ data }) => (
   <div>
-    <ul>
       <h1>HOLA AMIGO MAS</h1>
       {
         data.map((item, index) => {
-          return <li key={index}>{item.title}</li>
+          return (
+            <>
+              <Item itemInformation={item} />
+              <hr />
+            </>
+          )
         })
       }
-    </ul>
   </div>
 );
 
