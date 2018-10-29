@@ -25,10 +25,9 @@ app.get('/test', (req, res) => {
 
 app.post('/ebay', (req, res) => {
     const apiFriendlyQuery = req.body.query.split(' ').join('+');
-    const OPERATION_NAME = "findItemsByKeywords";
+    const OPERATION_NAME = "findCompletedItems";
     const SERVICE_VERSION = "1.13.0";
     const SECURITY_APPNAME = process.env.EBAY_APP_ID;
-    const GLOBAL_ID = "EBAY-US";
     const RESPONSE_DATA_FORMAT = "JSON";
     const KEYWORDS = apiFriendlyQuery;
     const PAGINATION = "3";
@@ -45,6 +44,9 @@ app.post('/ebay', (req, res) => {
         `&SERVICE-VERSION=${SERVICE_VERSION}`+
         `&RESPONSE-DATA-FORMAT=${RESPONSE_DATA_FORMAT}`+
         `&keywords=${KEYWORDS}`+
+        `&itemFilter(0).name=SoldItemsOnly`+
+        `&itemFilter(0).value=true`+
+        `&sortOrder=PricePlusShippingLowest`+
         `&GLOBAL-ID=EBAY-US`,
         responseType:'json'
     })

@@ -21,7 +21,7 @@ function* fetchData(action) {
         return data
       });
 
-      yield put(getDataSuccess(items["findItemsByKeywordsResponse"][0].searchResult[0].item));
+      yield put(getDataSuccess(items["findCompletedItemsResponse"][0].searchResult[0].item));
    } catch (e) {
       console.log(e.message);
    }
