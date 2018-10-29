@@ -22,7 +22,6 @@ app.get('/test', (req, res) => {
 });
 
 app.get('/ebay', (req, res) => {
-
     const OPERATION_NAME = "findItemsByKeywords";
     const SERVICE_VERSION = "1.13.0";
     const SECURITY_APPNAME = process.env.EBAY_APP_ID;

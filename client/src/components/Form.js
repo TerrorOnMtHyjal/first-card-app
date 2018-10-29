@@ -1,0 +1,45 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+import { getData } from '../actions/actionCreators';
+
+
+export default class Form extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      fields: {
+        item: ''
+      }
+    };
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    this.props.dispatch(getData(this.state.fields.item))
+  }
+
+  handleChange = ({ target }) => {
+    console.log(target);
+    this.setState({
+      fields: {
+        ...this.state.fields,
+        [target.name]: target.value
+      }
+    }, () => console.log(this.state.fields))
+  }
+  render() {
+    return (
+      <form onSubmit={this.handleSubmit}>
+        <input
+          autoFocus 
+          name="item" 
+          type="text" 
+          placeholder="What are you looking for?" 
+          value={this.state.fields.item}
+          onChange={this.handleChange}
+        />
+        <input type="submit" value="Submit"/>
+      </form>
+    );
+  }
+}

@@ -12,6 +12,7 @@ services:
       - ${APP_SERVER_PORT}:${APP_SERVER_PORT}
     volumes:
       - ./server/src:/srv/app/test-server/src
+      - /srv/app/node_modules
     command: npm run dev
 
   client:
@@ -25,6 +26,7 @@ services:
     volumes:
       - ./client/src:/srv/app/test-client/src
       - ./client/public:/srv/app/test-client/public
+      - /srv/app/node_modules
     links:
       - server
     command: npm run start

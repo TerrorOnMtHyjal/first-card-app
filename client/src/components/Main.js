@@ -1,35 +1,23 @@
 import React from 'react';
-import { getDataSuccess } from '../actions/actionCreators';
+import PropTypes from 'prop-types';
 
-export default class Main extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+const Main = ({ data }) => (
+  <div>
+    <ul>
+      <h1>HOLA AMIGO MAS</h1>
+      {
+        data.map((item, index) => {
+          return <li key={index}>{item.title}</li>
+        })
+      }
+    </ul>
+  </div>
+);
 
-  componentDidMount() {
-    fetch('/ebay')
-    .then((res) => {
-      return res.json();
-    })
-    .then(data => {
-      this.props.dispatch(getDataSuccess(data))
-    });
-  }
+export default Main;
 
-  render() {
-    const { data } = this.props;
-
-    return (
-      <div>
-        <h1>HOLA AMIGO MAS</h1>
-        <ul>
-          {
-            data.map(item => {
-              return <li>{item.title}</li>
-            })
-          }
-        </ul>
-      </div>
-    );
-  }
-}
+Main.propTypes = {
+  data: PropTypes.arrayOf(PropTypes.shape({
+    title: PropTypes.array.isRequired
+  })).isRequired
+};
